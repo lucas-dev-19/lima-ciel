@@ -1,0 +1,104 @@
+/* ==========================================================
+   Lima Ciel — ajustes para tablets e desktops.
+   A base (style.css) é pensada primeiro para o celular.
+   ========================================================== */
+
+/* ---------- Tablets ---------- */
+@media (min-width: 640px) {
+  .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem 1rem; }
+  .tiles { grid-auto-columns: calc((100% - 3 * .8rem) / 3.4); }
+  .insta-grid { grid-template-columns: repeat(4, 1fr); }
+  .story { grid-template-columns: 1fr 1fr; }
+  .story__media { aspect-ratio: auto; min-height: 340px; }
+  .story__text { padding: 2.5rem; }
+  .about { grid-template-columns: .9fr 1.1fr; gap: 2.5rem; }
+
+  .form-grid { grid-template-columns: repeat(6, 1fr); }
+  .form-grid > * { grid-column: span 6; }
+  .form-grid .w-2 { grid-column: span 2; }
+  .form-grid .w-3 { grid-column: span 3; }
+  .form-grid .w-4 { grid-column: span 4; }
+  .radio-cards { grid-template-columns: 1fr 1fr; }
+  .co-card { padding: 2rem; }
+  .stepper li { font-size: .78rem; }
+  .trust { grid-template-columns: repeat(3, 1fr); }
+  .cart-item { grid-template-columns: 90px 1fr auto; gap: 1.1rem; }
+  .cart-list { padding: .4rem 1.4rem; }
+  .cat-banner { min-height: 220px; }
+  .cat-banner__img { width: 50%; }
+}
+
+/* ---------- Desktop ---------- */
+@media (min-width: 961px) {
+  :root { --header-h: 70px; }
+
+  /* Cabeçalho: logo · menu · ícones */
+  .menu-toggle, .main-nav__head, .main-nav__extra, .nav-scrim { display: none !important; }
+  .site-header__bar { gap: 3rem; }
+  .wordmark { font-size: 1.45rem; }
+  .main-nav { position: static; width: auto; transform: none; visibility: visible; transition: none; padding: 0; background: none; box-shadow: none; overflow: visible; display: block; }
+  .main-nav__list { display: flex; align-items: center; gap: 2rem; }
+  .main-nav__list > li { position: relative; }
+  .main-nav__list > li > a, .nav-sub-toggle { width: auto; padding: .5rem 0; border: 0; font-size: .86rem; color: var(--ink-2); gap: .35rem; }
+  .main-nav__list > li > a:hover, .nav-sub-toggle:hover, .main-nav__list > li > a[aria-current="page"] { color: var(--ink); }
+  .main-nav__list > li > a[aria-current="page"] { text-decoration: underline; text-underline-offset: .5em; }
+  .nav-sub { position: absolute; top: 100%; left: -1rem; min-width: 200px; padding: .5rem; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+  .nav-sub a { padding: .5rem .7rem; border-radius: var(--radius-sm); font-size: .86rem; }
+  .nav-sub a:hover { background: var(--bg); }
+  .bottom-nav { display: none; }
+  body.has-bottom-nav { padding-bottom: 0; }
+  .toast { bottom: 1.5rem; left: auto; right: 1.5rem; transform: translateY(30px); }
+  .toast.is-visible { transform: none; }
+
+  /* Grades */
+  .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2.4rem 1.2rem; }
+  .grid--catalog { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .card__media:hover .card__alt { opacity: 1; }
+  .card__media:not(:has(.card__alt)):hover img { transform: scale(1.03); }
+
+  /* Início */
+  .hero { min-height: min(78vh, 620px); align-items: center; }
+  .hero__img { transform: scaleX(-1); object-position: 30% 25%; }
+  .hero::after { background: linear-gradient(90deg, rgba(246, 240, 233, .94) 0%, rgba(246, 240, 233, .78) 32%, rgba(246, 240, 233, 0) 58%); }
+  .hero__content { padding: 4rem var(--gutter); gap: 1rem; }
+  .hero h1 { font-size: clamp(3rem, 4.6vw, 4.2rem); }
+  .tiles { grid-auto-flow: row; grid-template-columns: repeat(5, minmax(0, 1fr)); grid-auto-columns: auto; overflow: visible; margin: 0; padding: 0; gap: 1rem; }
+  .tile:hover img { transform: scale(1.04); }
+  .story { grid-template-columns: 1fr 1fr; min-height: 380px; }
+  .story__text { padding: 3rem 4rem; }
+  .insta-grid { grid-template-columns: repeat(6, 1fr); gap: .6rem; }
+
+  /* Catálogo com barra lateral */
+  .page-head__row { grid-template-columns: 1fr minmax(260px, 340px); align-items: end; }
+  .catalog { grid-template-columns: 230px minmax(0, 1fr); gap: 2.6rem; align-items: start; }
+  .filters { position: static; z-index: 1; width: auto; transform: none; visibility: visible; transition: none; background: none; box-shadow: none; }
+  .filters__head { padding: 0 0 .8rem; }
+  .filters__head h2 { font-size: 1.3rem; }
+  .filters__close, .filters__foot, .filters-scrim, .filters-open { display: none !important; }
+  .filters__body { padding: 0; overflow: visible; }
+  .filter-block:first-child { padding-top: .4rem; }
+
+  /* Produto: miniaturas verticais + foto + informações */
+  .pdp { grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr); gap: 3.5rem; align-items: start; padding-top: 1rem; }
+  .gallery { grid-template-columns: 74px minmax(0, 1fr); gap: .8rem; align-items: start; }
+  .gallery__thumbs { flex-direction: column; overflow: visible; order: -1; }
+  .gallery__thumb { width: 74px; }
+  .pdp__info { position: sticky; top: calc(var(--header-h) + 1.4rem); }
+
+  /* Carrinho com resumo ao lado */
+  .cart-layout { grid-template-columns: minmax(0, 1fr) 340px; gap: 1.6rem; }
+  .cart-item { grid-template-columns: 96px 1fr auto; }
+  .cart-layout .summary { position: sticky; top: calc(var(--header-h) + 1.2rem); }
+
+  /* Checkout com "Seu pedido" fixo */
+  .stepper { max-width: 720px; margin-left: auto; margin-right: auto; }
+  .checkout { grid-template-columns: minmax(0, 1fr) 360px; gap: 1.6rem; }
+  .checkout__summary { position: sticky; top: calc(var(--header-h) + 1.2rem); grid-column: 2; grid-row: 1; }
+  .checkout__main { grid-column: 1; grid-row: 1; }
+  .summary-toggle { display: none; }
+  .checkout__summary .co-summary { display: grid; margin-top: 0; }
+  .co-card { padding: 2.2rem 2.4rem; }
+
+  .site-footer__inner { grid-template-columns: 1.3fr .8fr .9fr 1.3fr; }
+  .site-footer__base { grid-template-columns: 1fr auto; }
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Loja — todas as peças — Lima Ciel</title>
+  <meta name="description" content="Vestidos, blusas, calças, saias e conjuntos femininos. Filtre por categoria, tamanho e preço.">
+  <meta name="theme-color" content="#FCF9F5">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-nav="loja">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div id="site-header"></div>
+
+  <main id="conteudo">
+    <div class="container">
+      <header class="page-head">
+        <nav class="breadcrumb" aria-label="Você está em"><ol><li><a href="index.html">Início</a></li><li aria-current="page">Roupas</li></ol></nav>
+        <div class="page-head__row">
+          <h1>Todas as Roupas</h1>
+          <form role="search" class="input-icon" action="produtos.html">
+            <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+            <label class="sr-only" for="catalog-search">Buscar produtos</label>
+            <input class="input" id="catalog-search" name="busca" type="search" placeholder="Buscar produtos…" autocomplete="off">
+          </form>
+        </div>
+      </header>
+      <div id="catalog-root">
+        <noscript><p class="empty">Ative o JavaScript para ver o catálogo e usar o carrinho.</p></noscript>
+      </div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/config.js" defer></script>
+  <script src="js/products.js" defer></script>
+  <script src="js/utils.js" defer></script>
+  <script src="js/cart.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/catalog.js" defer></script>
+</body>
+</html>

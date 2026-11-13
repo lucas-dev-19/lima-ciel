@@ -1,0 +1,6 @@
+backend/.env
+backend/data/*
+!backend/data/.gitignore
+node_modules/
+# versão antiga do site (página única), mantida só localmente
+lima-ciel/

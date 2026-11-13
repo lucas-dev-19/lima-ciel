@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Finalizar pedido — Lima Ciel</title>
+  <meta name="description" content="Finalize seu pedido na Lima Ciel: entrega ou retirada na loja e pagamento seguro pelo Mercado Pago.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#FCF9F5">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-layout="checkout">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div id="site-header"></div>
+
+  <main id="conteudo" class="container">
+    <ol class="stepper" id="stepper" aria-label="Etapas da compra">
+      <li data-step="1"><span class="stepper__dot">1</span>Identificação</li>
+      <li data-step="2"><span class="stepper__dot">2</span>Entrega</li>
+      <li data-step="3"><span class="stepper__dot">3</span><span id="step3-label">Endereço</span></li>
+      <li data-step="4"><span class="stepper__dot">4</span>Pagamento</li>
+    </ol>
+
+    <div class="checkout" id="checkout">
+      <aside class="checkout__summary" id="order-summary" aria-labelledby="summary-title">
+        <button class="summary-toggle" type="button" id="summary-toggle" aria-expanded="false" aria-controls="summary-card">
+          <span>Ver resumo do pedido <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+          <strong id="summary-toggle-total">—</strong>
+        </button>
+        <div class="co-summary panel" id="summary-card">
+          <h2 id="summary-title">Seu pedido</h2>
+          <div id="summary-body"></div>
+        </div>
+      </aside>
+
+      <div class="checkout__main">
+        <form id="checkout-form" novalidate autocomplete="on">
+
+          <!-- 1. IDENTIFICAÇÃO -->
+          <section class="co-card panel" id="step-1" data-step="1" aria-labelledby="step-1-title">
+            <h2 id="step-1-title" tabindex="-1">Dados pessoais</h2>
+            <p class="co-origin" id="origin-note" hidden></p>
+            <div class="form-grid">
+              <div class="field">
+                <label for="c-name">Nome completo *</label>
+                <input class="input" id="c-name" name="name" autocomplete="name" required>
+                <p class="field__error" id="err-c-name" role="alert"></p>
+              </div>
+              <div class="field">
+                <label for="c-email">E-mail *</label>
+                <input class="input" id="c-email" name="email" type="email" autocomplete="email" inputmode="email" required>
+                <p class="field__error" id="err-c-email" role="alert"></p>
+              </div>
+              <div class="field w-3">
+                <label for="c-phone">Telefone / WhatsApp *</label>
+                <input class="input" id="c-phone" name="phone" type="tel" autocomplete="tel-national" inputmode="tel" placeholder="(21) 90000-0000" required>
+                <p class="field__error" id="err-c-phone" role="alert"></p>
+              </div>
+              <div class="field w-3">
+                <label for="c-cpf" id="c-cpf-label">CPF *</label>
+                <input class="input" id="c-cpf" name="cpf" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00" required>
+                <p class="field__hint">Para a nota fiscal e a etiqueta de envio.</p>
+                <p class="field__error" id="err-c-cpf" role="alert"></p>
+              </div>
+            </div>
+            <div class="co-actions co-actions--single">
+              <button type="button" class="btn btn--solid btn--lg" data-next="1">Continuar <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+            </div>
+            <p class="co-secure"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="1.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>Seus dados estão seguros</p>
+          </section>
+
+          <!-- 2. ENTREGA OU RETIRADA -->
+          <section class="co-card panel" id="step-2" data-step="2" aria-labelledby="step-2-title" hidden>
+            <h2 id="step-2-title" tabindex="-1">Como deseja receber seu pedido?</h2>
+            <fieldset>
+              <legend class="sr-only">Forma de recebimento</legend>
+              <div class="radio-cards">
+                <label class="radio-card">
+                  <input type="radio" name="method" value="entrega" id="method-home">
+                  <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h11v10H3z"/><path d="M14 9h4l3 3.5V16h-7"/><circle cx="7" cy="17.5" r="1.7"/><circle cx="17" cy="17.5" r="1.7"/></svg>
+                  <span class="radio-card__title">Receber em casa</span>
+                  <span class="radio-card__desc">Informe seu endereço para calcular o frete.</span>
+                </label>
+                <label class="radio-card" id="pickup-option">
+                  <input type="radio" name="method" value="retirada" id="method-pickup">
+                  <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5L5.5 4h13L20 9.5"/><path d="M4 9.5a2.7 2.7 0 0 0 5.3 0 2.7 2.7 0 0 0 5.4 0 2.7 2.7 0 0 0 5.3 0"/><path d="M5.5 11.5V20h13v-8.5"/><path d="M10 20v-4.5h4V20"/></svg>
+                  <span class="radio-card__title">Retirar na loja</span>
+                  <span class="radio-card__desc">Retire seu pedido em nossa loja física, sem frete.</span>
+                </label>
+              </div>
+              <p class="field__error" id="err-method" role="alert"></p>
+            </fieldset>
+            <div class="co-actions">
+              <button type="button" class="btn btn--line btn--lg" data-back="1">Voltar</button>
+              <button type="button" class="btn btn--solid btn--lg" data-next="2">Continuar <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+            </div>
+          </section>
+
+          <!-- 3A. ENDEREÇO + FRETE  /  3B. RETIRADA NA LOJA -->
+          <section class="co-card panel" id="step-3" data-step="3" aria-labelledby="step-3-title" hidden>
+            <div id="address-screen">
+              <h2 id="step-3-title" tabindex="-1">Endereço de entrega</h2>
+              <div class="form-grid" style="margin-top:1.2rem">
+                <div class="field w-3">
+                  <label for="a-cep">CEP *</label>
+                  <input class="input" id="a-cep" name="cep" inputmode="numeric" autocomplete="postal-code" placeholder="00000-000" maxlength="9">
+                  <p class="field__hint" id="cep-hint" aria-live="polite"></p>
+                  <p class="field__error" id="err-a-cep" role="alert"></p>
+                </div>
+                <div class="field w-3" style="align-self:center">
+                  <a class="small" href="https://buscacepinter.correios.com.br/app/endereco/index.php" target="_blank" rel="noopener noreferrer">Não sei meu CEP</a>
+                </div>
+                <div class="field">
+                  <label for="a-street">Rua *</label>
+                  <input class="input" id="a-street" name="street" autocomplete="address-line1">
+                  <p class="field__error" id="err-a-street" role="alert"></p>
+                </div>
+                <div class="field w-2">
+                  <label for="a-number">Número *</label>
+                  <input class="input" id="a-number" name="number" inputmode="numeric">
+                  <p class="field__error" id="err-a-number" role="alert"></p>
+                </div>
+                <div class="field w-4">
+                  <label for="a-complement">Complemento (opcional)</label>
+                  <input class="input" id="a-complement" name="complement" autocomplete="address-line2" placeholder="Apto, bloco…">
+                </div>
+                <div class="field">
+                  <label for="a-district">Bairro *</label>
+                  <input class="input" id="a-district" name="district">
+                  <p class="field__error" id="err-a-district" role="alert"></p>
+                </div>
+                <div class="field w-4">
+                  <label for="a-city">Cidade *</label>
+                  <input class="input" id="a-city" name="city" autocomplete="address-level2">
+                  <p class="field__error" id="err-a-city" role="alert"></p>
+                </div>
+                <div class="field w-2">
+                  <label for="a-state">Estado *</label>
+                  <select class="input" id="a-state" name="state" autocomplete="address-level1"></select>
+                  <p class="field__error" id="err-a-state" role="alert"></p>
+                </div>
+              </div>
+              <div id="quote-box" style="margin-top:1.2rem" aria-live="polite"></div>
+            </div>
+
+            <div id="pickup-screen" hidden>
+              <div class="pickup-intro">
+                <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5L5.5 4h13L20 9.5"/><path d="M4 9.5a2.7 2.7 0 0 0 5.3 0 2.7 2.7 0 0 0 5.4 0 2.7 2.7 0 0 0 5.3 0"/><path d="M5.5 11.5V20h13v-8.5"/><path d="M10 20v-4.5h4V20"/></svg>
+                <h2 id="pickup-title" tabindex="-1">Retirada na loja</h2>
+                <p>Você pode retirar seu pedido em uma de nossas lojas físicas.</p>
+              </div>
+              <div id="pickup-box" style="margin-top:1.2rem"></div>
+            </div>
+
+            <div class="co-actions" style="margin-top:1.2rem">
+              <button type="button" class="btn btn--line btn--lg" data-back="2">Voltar</button>
+              <button type="button" class="btn btn--solid btn--lg" data-next="3">Continuar <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+            </div>
+          </section>
+
+          <!-- 4. RESUMO E PAGAMENTO -->
+          <section class="co-card panel" id="step-4" data-step="4" aria-labelledby="step-4-title" hidden>
+            <h2 id="step-4-title" tabindex="-1">Resumo do pedido</h2>
+            <div id="review"></div>
+            <fieldset class="pay-opts" id="pay-opts">
+              <legend>Forma de pagamento</legend>
+              <label class="pay-opt">
+                <input type="radio" name="pay" value="pix">
+                <span class="pay-opt__dot" aria-hidden="true"></span>
+                <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l3.6 3.6a2 2 0 0 0 1.4.6h1.5L20.5 9.7a3.2 3.2 0 0 1 0 4.6l-2 2H17a2 2 0 0 0-1.4.6L12 20.5l-3.6-3.6A2 2 0 0 0 7 16.3H5.5l-2-2a3.2 3.2 0 0 1 0-4.6l2-2H7a2 2 0 0 0 1.4-.6L12 3.5z"/></svg>
+                <span>Pix</span>
+                <svg class="i pay-opt__chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+              </label>
+              <label class="pay-opt">
+                <input type="radio" name="pay" value="credito">
+                <span class="pay-opt__dot" aria-hidden="true"></span>
+                <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h3"/></svg>
+                <span>Cartão de crédito</span>
+                <svg class="i pay-opt__chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+              </label>
+              <label class="pay-opt">
+                <input type="radio" name="pay" value="debito">
+                <span class="pay-opt__dot" aria-hidden="true"></span>
+                <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h3"/></svg>
+                <span>Cartão de débito</span>
+                <svg class="i pay-opt__chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+              </label>
+              <p class="field__error" id="err-pay-method" role="alert"></p>
+            </fieldset>
+            <div id="payment-box" aria-live="polite"></div>
+            <div class="co-actions co-actions--single">
+              <button type="button" class="btn btn--line" data-back="3">Voltar</button>
+            </div>
+            <p class="co-secure"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.3-3 7.8-7 9.5-4-1.7-7-5.2-7-9.5V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>Pagamento 100% seguro via Mercado Pago</p>
+          </section>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/config.js" defer></script>
+  <script src="js/products.js" defer></script>
+  <script src="js/utils.js" defer></script>
+  <script src="js/cart.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/shipping.js" defer></script>
+  <script src="js/checkout.js" defer></script>
+</body>
+</html>
